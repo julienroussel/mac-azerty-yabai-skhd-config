@@ -1,0 +1,93 @@
+# focus window
+# Either use alt or fn here
+fn - h : yabai -m window --focus west
+fn - j : yabai -m window --focus south
+fn - k : yabai -m window --focus north
+fn - l : yabai -m window --focus east
+
+# swap managed window
+shift + cmd - h : yabai -m window --swap west
+shift + cmd - j : yabai -m window --swap south
+shift + cmd - k : yabai -m window --swap north
+shift + cmd - l : yabai -m window --swap east
+
+# resize window
+ctrl + shift - h : yabai -m window --resize left:-50:0; \
+                  yabai -m window --resize right:-50:0
+ctrl + shift - j : yabai -m window --resize bottom:0:50; \
+                  yabai -m window --resize top:0:50
+ctrl + shift - k : yabai -m window --resize top:0:-50; \
+                  yabai -m window --resize bottom:0:-50
+ctrl + shift - l : yabai -m window --resize right:50:0; \
+                  yabai -m window --resize left:50:0
+
+# rotate tree
+alt - r : yabai -m space --rotate 90
+
+# toggle window fullscreen zoom
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+# float / unfloat window and center on screen
+alt - t : yabai -m window --toggle float;\
+          yabai -m window --grid 4:4:1:1:2:2
+
+# toggle window split type
+alt - e : yabai -m window --toggle split
+
+# balance size of windows
+shift + alt - 0x1D : yabai -m space --balance
+
+# focus space
+ralt - 0x12 : yabai -m space --focus 1
+ralt - 0x13 : yabai -m space --focus 2
+ralt - 0x14 : yabai -m space --focus 3
+ralt - 0x15 : yabai -m space --focus 4
+ralt - 0x17 : yabai -m space --focus 5
+ralt - 0x16 : yabai -m space --focus 6
+ralt - 0x1A : yabai -m space --focus 7
+ralt - 0x1C : yabai -m space --focus 8
+ralt - 0x19 : yabai -m space --focus 9
+
+# move window and focus desktop
+cmd + alt - 0x12 : yabai -m window --space 1; yabai -m space --focus 1
+cmd + alt - 0x13 : yabai -m window --space 2; yabai -m space --focus 2
+cmd + alt - 0x14 : yabai -m window --space 3; yabai -m space --focus 3
+cmd + alt - 0x15 : yabai -m window --space 4; yabai -m space --focus 4
+cmd + alt - 0x17 : yabai -m window --space 5; yabai -m space --focus 5
+cmd + alt - 0x16 : yabai -m window --space 6; yabai -m space --focus 6
+cmd + alt - 0x1A : yabai -m window --space 7; yabai -m space --focus 7
+cmd + alt - 0x1C : yabai -m window --space 8; yabai -m space --focus 8
+cmd + alt - 0x19 : yabai -m window --space 9; yabai -m space --focus 9
+
+# Move next-prev space
+ralt - 0x1B : yabai -m space --focus prev;
+ralt - 0x18 : yabai -m space --focus next;
+
+# deactivate standard cmd+tab app switcher
+lcmd - tab : osascript -e 'display notification "This shortcut has been deactivated" with title "Unauthorized"'
+
+# start apps
+fn - t : open -a iTerm
+fn - c : open -a Arc
+fn - s : open -a Slack
+fn - n : open -a Notion
+fn - o : open -a Obsidian
+fn - d : open -a Discord
+fn - g : open -a ChatGPT
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+shift + alt - n : yabai -m space --create && \
+                   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                   yabai -m window --space "${index}" && \
+                   yabai -m space --focus "${index}"
+
+# fast focus desktop
+#alt - tab : yabai -m space --focus recent
+
+# switch to prev/next monitor
+fn - 0x1B : yabai -m window --display previous; yabai -m display --focus previous
+fn - 0x18 : yabai -m window --display next; yabai -m display --focus next
+
+# send window to monitor and follow focus
+fn + ctrl - 0x1B : yabai -m window --display previous; yabai -m display --focus previous
+fn + ctrl - 0x18 : yabai -m window --display next; yabai -m display --focus next
