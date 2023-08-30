@@ -54,4 +54,9 @@ yabai -m rule --add app="^HP Tango$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^NordPass$" manage=off
 
+#yabai -m rule --add app="^Slack$" space=1
+#yabai -m rule --add app="^iTerm$" space=2
+#yabai -m rule --add app="^Arc$" space=3
+#yabai -m rule --add app="^Notion$" space=4
+
 echo "yabai configuration loaded.."

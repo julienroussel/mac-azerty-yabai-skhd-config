@@ -11,6 +11,12 @@ shift + cmd - j : yabai -m window --swap south
 shift + cmd - k : yabai -m window --swap north
 shift + cmd - l : yabai -m window --swap east
 
+# move managed window
+#shift + alt + ctrl - h : yabai -m window --warp west
+#shift + alt + ctrl - j : yabai -m window --warp south
+#shift + alt + ctrl - k : yabai -m window --warp north
+#shift + alt + ctrl - l : yabai -m window --warp east
+
 # resize window
 ctrl + shift - h : yabai -m window --resize left:-50:0; \
                   yabai -m window --resize right:-50:0
@@ -26,6 +32,14 @@ alt - r : yabai -m space --rotate 90
 
 # toggle window fullscreen zoom
 alt - f : yabai -m window --toggle zoom-fullscreen
+
+# alt - s : yabai -m window --toggle
+#alt - s : yabai -m window --toggle sticky;\
+#          yabai -m window --toggle topmost;\
+#          yabai -m window --toggle pip
+
+# toggle padding and gap
+#alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float;\
@@ -62,6 +76,7 @@ cmd + alt - 0x19 : yabai -m window --space 9; yabai -m space --focus 9
 # Move next-prev space
 ralt - 0x1B : yabai -m space --focus prev;
 ralt - 0x18 : yabai -m space --focus next;
+ralt - 0x1E : osascript -e 'display notification "TEST" with title "thorized"'
 
 # deactivate standard cmd+tab app switcher
 lcmd - tab : osascript -e 'display notification "This shortcut has been deactivated" with title "Unauthorized"'
